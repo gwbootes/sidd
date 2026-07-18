@@ -46,21 +46,54 @@ groups.forEach((g) => {
 
     g.tracks.forEach((t) => {
         const i = flatIndex++;
+
+        // Each entry is a flex "line": the (shortened) play row, plus — for roles
+        // that live out on the net — a Persona-5 square link to their page.
+        const line = document.createElement("div");
+        line.className = "track-line";
+
         const row = document.createElement("div");
         row.className = "track-row" + (t.url ? " has-link" : "");
-        // linked rows get a small ↗ after the project name as a "this opens out" cue
-        const linkMark = t.url ? ' <span class="tr-ext">↗</span>' : '';
+        // Make the div a real, keyboard-reachable control for screen readers +
+        // Tab/Enter/Space users (a bare div with onclick is invisible to them).
+        row.setAttribute("role", "button");
+        row.setAttribute("tabindex", "0");
+        row.setAttribute("aria-label", "Play " + t.character + ", " + t.project);
         row.innerHTML =
             '<span class="tr-char">' + t.character + '</span>' +
-            '<span class="tr-proj">' + t.project + linkMark + '</span>' +
+            '<span class="tr-proj">' + t.project + '</span>' +
             '<span class="tr-year">' + t.year + '</span>';
-        row.addEventListener("click", () => {
-            playTrack(i);
-            // dual-action: a real click also opens the game page in a new tab.
-            // Kept HERE (not in playTrack) so auto-advance never spawns tabs.
-            if (t.url) window.open(t.url, "_blank", "noopener");
+
+        const activate = () => {
+            // Click a row that's already playing to STOP it; otherwise play it.
+            if (currentIndex === i && !player.paused) player.pause();
+            else playTrack(i);
+        };
+        row.addEventListener("click", activate);
+        row.addEventListener("keydown", (e) => {
+            // Enter and Space are the standard "activate a button" keys.
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();         // Space would otherwise scroll the page
+                activate();
+            }
         });
-        listing.appendChild(row);
+        line.appendChild(row);
+
+        // The external link now lives in its own square control — a real <a>, so
+        // it's keyboard-focusable on its own and clicking it never toggles the
+        // player (it's a sibling of the row, so the click doesn't reach it).
+        if (t.url) {
+            const square = document.createElement("a");
+            square.className = "role-square";
+            square.href = t.url;
+            square.target = "_blank";
+            square.rel = "noopener noreferrer";
+            square.setAttribute("aria-label", "Open the " + t.project + " page in a new tab");
+            square.innerHTML = '<span aria-hidden="true">↗</span>';
+            line.appendChild(square);
+        }
+
+        listing.appendChild(line);
     });
 });
 
@@ -85,8 +118,16 @@ playBtn.addEventListener("click", () => {
     else player.pause();
 });
 
-player.onplay  = () => playBtn.classList.add("is-playing");
-player.onpause = () => playBtn.classList.remove("is-playing");
+player.onplay  = () => {
+    playBtn.classList.add("is-playing");
+    playBtn.setAttribute("aria-pressed", "true");
+    playBtn.setAttribute("aria-label", "Pause");
+};
+player.onpause = () => {
+    playBtn.classList.remove("is-playing");
+    playBtn.setAttribute("aria-pressed", "false");
+    playBtn.setAttribute("aria-label", "Play");
+};
 
 /* progress bar */
 player.ontimeupdate = () => {

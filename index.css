@@ -104,6 +104,32 @@ body {
 
 }
 
+/* ---- accessibility helpers ---- */
+
+/* visually hidden but still read by screen readers (for the page's real <h1>) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* visible keyboard focus ring — only shows for keyboard users (:focus-visible),
+   never on mouse click, so it won't disturb the mouse-driven look. */
+a:focus-visible,
+button:focus-visible,
+.track-row:focus-visible,
+.play:focus-visible {
+  outline: 3px solid var(--primary-red);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 .wrapper {
   width: 100vw;
   height: 100vh;
@@ -322,6 +348,13 @@ display: flex;
   gap: 100%;
 }
 .play {
+  /* reset the native <button> chrome so the flip-label design stays intact */
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  text-align: inherit;
   color: var(--primary-white);
   pointer-events: auto;
   cursor: pointer;
@@ -484,16 +517,43 @@ display: flex;
   color: var(--primary-black);
 }
 
-/* linked-row marker: a small arrow saying "this one opens the game page too" */
-.tr-ext {
-  color: var(--primary-red);
-  font-size: 0.85em;
-  font-weight: 700;
+/* each listing entry: the play row + (for linked roles) its P5 square link.
+   Full width; align-items:stretch so the square matches the row's height. */
+.track-line {
+  display: flex;
+  align-items: center;
+  gap: 2cqw;
+  width: 100%;
 }
 
-.track-row:hover .tr-ext,
-.track-row.selected .tr-ext {
+.track-line .track-row {
+  flex: 1 1 auto;
+  min-width: 0;              /* lets the ellipsis inside the row still work */
+}
+
+/* Persona-5 slanted red square that opens the role's external project page.
+   Width is the knob here — aspect-ratio derives the height from it, so it stays
+   a true square. Nudge --square-size to match one listing row's height. */
+.role-square {
+  flex: 0 0 auto;
+  pointer-events: auto;     /* opt back in — the parent section is pointer-events:none */
+  width: var(--square-size, 4.3cqw);
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  background: var(--primary-red);
   color: var(--primary-white);
+  font-size: 3cqw;
+  font-weight: 700;
+  text-decoration: none;
+  transform: rotate(3deg);
+  clip-path: polygon(6% 0%, 100% 5%, 94% 100%, 0% 95%);
+  transition: transform 120ms ease, background 120ms ease;
+}
+
+.role-square:hover {
+  background: var(--primary-black);
+  transform: rotate(-2deg) scale(1.08);
 }
 /* AUDIO CODE */
 
