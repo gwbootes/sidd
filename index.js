@@ -1,6 +1,6 @@
 /* ---- placeholder catalogue (swap for Sidd's real VO credits) ---- */
-const DEMO   = "/Assets/SiddVillanueva_2026_CharacterDemo_English.mp3";
-const STUDIO = "/Assets/Siddhartha%20Villanueva%20-%20Studio%20Space%20Sample.mp3";
+const DEMO   = "Assets/SiddVillanueva_2026_CharacterDemo_English.mp3";
+const STUDIO = "Assets/Siddhartha%20Villanueva%20-%20Studio%20Space%20Sample.mp3";
 
 /* playlist grouped into labelled chunks */
 const groups = [

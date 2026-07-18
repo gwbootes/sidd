@@ -73,22 +73,22 @@ body {
 
 @font-face {
   font-family: 'Barrecito';
-  src: url('/fonts/Barriecito-Regular.ttf') format('truetype')
+  src: url('fonts/Barriecito-Regular.ttf') format('truetype')
 }
 
 @font-face {
   font-family: 'California';
-  src: url(/fonts/California.ttf) format('truetype');
+  src: url(fonts/California.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'Blackout Sunrise';
-  src:url(/fonts/Blackout\ Sunrise.ttf) format('truetype');
+  src:url(fonts/Blackout\ Sunrise.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'Blackout Midnight';
-  src: url(/fonts/Blackout\ Midnight.ttf);
+  src: url(fonts/Blackout\ Midnight.ttf);
 }
 
 :root {
