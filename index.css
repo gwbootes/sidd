@@ -1,0 +1,1063 @@
+/* ================================
+   CSS RESET
+   Normalize browser defaults so
+   the site looks consistent everywhere.
+   ================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+
+/* BACKGROUND */
+
+html {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+}
+
+.bolt img {
+  position: fixed;
+  height: 110%;
+  width: 100vw;
+  z-index: -999;
+}
+
+/* --- LEGEND --- */
+
+@font-face {
+  font-family: 'Barrecito';
+  src: url('/fonts/Barriecito-Regular.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'California';
+  src: url(/fonts/California.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Blackout Sunrise';
+  src:url(/fonts/Blackout\ Sunrise.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Blackout Midnight';
+  src: url(/fonts/Blackout\ Midnight.ttf);
+}
+
+:root {
+  --primary-red: #e83224;
+  --primary-black: #000;
+  --primary-white: #FFF;
+  --primary-gray: #7c7d7b;
+  --secondary-gray: #aeaeb0;
+  --title: 'California', sans-serif;
+  --subtitle: 'Barrecito', sans-serif;
+  --tert-title: 'Blackout Sunrise', sans-serif;
+  --tert-title-full: 'Blackout Midnight', sans-serif;
+
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+}
+
+.navbar {
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+}
+
+.navbar img {
+  position: relative;
+  width: 25%;
+  margin-bottom: -5%;
+  margin-left: 4%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.navslots {
+  position: relative;
+  width: 25%;                        /* tune to taste in the rail */
+  aspect-ratio: 360.25 / 314;
+  background: var(--primary-white);
+  clip-path: polygon(
+    8.84% 67.60%, 0% 67.60%, 0% 41.30%, 5.86% 41.30%,
+    6.39% 26.30%, 4.47% 26.30%, 4.47% 0%, 93.47% 0%,
+    93.47% 25.62%, 100% 26.12%, 99.07% 52.39%, 93.47% 51.96%,
+    93.47% 67.60%, 83.97% 67.60%, 68.56% 86.94%, 10.34% 100%
+  );
+  margin-left: 3%;
+  margin-bottom: 1%;
+  z-index: 1;
+}
+
+.navslots-inner {
+  position: absolute;
+  left: 1.50%;                       /* 9 / 360.25 */
+  top: 3.55%;                        /* 8 / 314 */
+  width: 95.86%;                     /* 345.35 / 360.25 */
+  height: 91.08%;                    /* 286 / 314 */
+  background: var(--primary-black);
+  clip-path: polygon(
+    13.97% 68.31%, 0% 68.53%, 2.76% 46.07%, 7.82% 45.78%,
+    6.66% 19.58%, 9.85% 19.85%, 6.95% 2.10%, 94.73% 0%,
+    92.37% 17.13%, 92.37% 26.72%, 99.03% 27.27%, 99.61% 39.16%,
+    100% 52.02%, 90.34% 51.37%, 90.34% 67.12%, 80.24% 67.28%,
+    68.05% 90.56%, 11.29% 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--subtitle);
+    color: white;
+}
+
+.navslots-inner a {                         /* home*/
+  font-size: 4.5cqw;
+  transform: translateX(10%) translateY(15%) rotate(3deg);
+  line-height: 0.9;
+}
+
+.navslots-inner a:nth-child(2) {            /* voice */
+  font-size: 5cqw;
+  transform: translateY(-3%) translateX(3%) rotate(3deg);
+  line-height: 1.1;
+}
+
+.navslots-inner a:nth-child(3) {            /* film */
+  font-size: 3.8cqw;
+  transform: translateX(-4%) rotate(-2deg);
+  line-height: 0.7;
+}
+
+.navslots-inner a:nth-child(4) {            /* about */
+  font-size: 4.7cqw;
+  transform: translateX(-18%) rotate(-6deg);
+  line-height: 1.4;
+}
+
+.full-poster {
+  position: relative;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.full-poster > section {
+  pointer-events: none;
+  width: min(92vw, calc(100vh * 1440 / 900));
+  aspect-ratio: 1440 / 900;
+  position: relative;
+  container-type: inline-size;
+  margin-inline: auto;
+}
+
+
+.name {
+  color: white;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  transform: rotate(2deg);
+  top: 3%;
+}
+
+.first {
+  font-family: var(--title);
+  position: absolute;
+  right: 25%;
+  top: -3%;
+  font-size: 11cqw;
+}
+
+.first span {
+  color: var(--primary-red);
+}
+
+.last {
+  font-family: var(--subtitle);
+  font-size: 6cqw;
+  position: absolute;
+  right: 3%;
+  transform: rotate(15deg);
+}
+
+.last span {
+  color: var(--primary-red);
+}
+
+.card-back--white {
+  width: 68%;
+  aspect-ratio: 1440 / 900;
+  background-color: white;
+  position: absolute;
+  transform: perspective(900px) rotateY(-6deg) rotateX(5deg) rotatez(5deg);
+  transform-style: preserve-3d;
+  right: 5%;
+  bottom: 18%;
+  z-index: 2;
+}
+
+.card-back--black {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  position: absolute;
+  inset: 0.7cqw;
+clip-path: polygon(1.98% 3.53%, 94.96% 1.41%, 97.22% 94.75%, 0.96% 96.38%);
+display: flex;
+}
+
+.job-titles {
+  font-family: var(--tert-title);
+  color: var(--secondary-gray);
+  font-size: 11.6cqw;
+  line-height: 0.8em;
+  padding-left: 3%;
+  padding-top: 4.5%;
+}
+
+.profile {
+  position: absolute;
+  width: 70%;
+  bottom: 2.6%;
+  right: -1.5%;
+  clip-path: polygon(2% -50%, 94% -50%, 94.6% 100%, 4% 99.3%);
+  transform: rotate(-1deg);
+}
+
+.profile-card {
+  position: relative;
+  top: -12%;
+}
+
+.card-back-gray-left {
+  width: 68%;
+  aspect-ratio: 1440 / 900;
+  background-color: var(--secondary-gray);
+  position: absolute;
+  transform: perspective(900px) rotateY(-6deg) rotateX(2deg) rotatez(5deg);
+  transform-style: preserve-3d;
+  right: 6%;
+  bottom: 20%;
+}
+
+.card-back-gray-right {
+  width: 68%;
+  aspect-ratio: 1440 / 900;
+  background-color: var(--primary-gray);
+  position: absolute;
+  transform: perspective(900px) rotateY(-6deg) rotateX(9deg) rotatez(5deg);
+  transform-style: preserve-3d;
+  right: 4%;
+  bottom: 17%;
+}
+
+
+/* VOICEWORK */
+
+
+/* AUDIO PLAYER */
+
+#player {
+  display: none;
+}
+
+.buttons {
+  font-family: var(--subtitle);
+  font-size: 5.5cqw;
+  right: 33%;
+  top: 6%;
+  width: 13%;
+  position: absolute;
+  display: flex;
+  transform: rotate(5deg);
+  gap: 100%;
+}
+.play {
+  color: var(--primary-white);
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 3;
+  position: relative;
+  display: inline-block;
+  perspective: 400px;
+}
+
+.play .lbl {
+  display: block;
+  transition: opacity 160ms ease, transform 160ms ease;
+  backface-visibility: hidden;
+}
+
+.play .lbl-pause {          /* stacked behind PLAY, flipped edge-on */
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: rotateX(-90deg);
+  color: var(--primary-red);
+}
+
+.play.is-playing .lbl-play {   /* PLAY flips away */
+  opacity: 0;
+  transform: rotateX(90deg);
+}
+
+.play.is-playing .lbl-pause {  /* PAUSE flips in */
+  opacity: 1;
+  transform: rotateX(0deg);
+}
+
+.volume {
+  color: var(--primary-white);
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 3;
+}
+.play-btn:hover {
+  transform: scale(1.08);
+}
+
+.play-btn::before {                 /* white play triangle by default */
+  content: "";
+  position: absolute;
+  inset: 30%;
+  background: var(--primary-white);
+  clip-path: polygon(18% 0%, 100% 50%, 18% 100%);
+}
+
+.play-btn.is-playing::before {      /* swap to two pause bars */
+  clip-path: none;
+  background: linear-gradient(
+    90deg,
+    var(--primary-white) 0 34%,
+    transparent 34% 66%,
+    var(--primary-white) 66% 100%
+  );
+}
+
+.progress-track {
+  position: absolute;
+  right: 8%;
+  top: 40%;
+  width: 80%;
+  height: 30%;
+  background: var(--primary-white);
+  border-radius: 0px;
+  overflow: hidden;
+  pointer-events: auto;
+  cursor: pointer;
+    clip-path: polygon(8.2% 18.37%, 98.39% 5.05%, 95.63% 78.89%, 6.2% 40.63%);
+  z-index: 3;
+  transform: rotate(6.5deg);
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--primary-red);
+  border-radius: 999px;
+}
+
+.track-title {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll-title 10s linear infinite;
+  color: white;
+  }
+
+  @keyframes scroll-title {
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+.track-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1.4fr 0.6fr;
+  gap: 3%;
+  align-items: center;
+  padding: 2.4% 4%;
+  background: var(--primary-black);
+  color: var(--primary-white);
+  font-family: var(--subtitle);
+  font-size: 1.5cqw;
+  line-height: 1.1;
+  clip-path: polygon(0 6%, 100% 0, 99% 92%, 1% 100%);
+  transform: rotate(-0.5deg);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background 120ms ease;
+}
+
+.track-row:nth-child(even) {
+  transform: rotate(0.5deg);
+}
+
+.track-row:hover {
+  background: var(--primary-red);
+}
+
+.track-row:hover .tr-proj {
+  color: var(--primary-white);
+}
+
+.track-row:hover .tr-year {
+  color: var(--primary-black);
+}
+
+.tr-char {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tr-proj {
+  color: var(--secondary-gray);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tr-year {
+  font-family: var(--tert-title-full);
+  color: var(--primary-red);
+  text-align: right;
+}
+
+.track-row.selected {
+  background: var(--primary-red);
+}
+
+.track-row.selected .tr-proj {
+  color: var(--primary-white);
+}
+
+.track-row.selected .tr-year {
+  color: var(--primary-black);
+}
+/* AUDIO CODE */
+
+.voice-title {
+  position: absolute;
+  width: 45%;
+  right: 30%;
+  top: 3%;
+  aspect-ratio: 560 / 225;
+  z-index: 3;
+}
+
+.card-back-black {
+  inset: 0;
+  position: absolute;
+  background: var(--primary-black);
+clip-path: polygon(0% 19.87%, 97.39% 6.05%, 94.16% 42.89%, 10.18% 97.63%);
+}
+
+.card-back-white {
+  inset: 1.4cqw;
+  position: absolute;
+  background: var(--primary-white);
+clip-path: polygon(2.16% 25.87%, 97.39% 6.05%, 94.16% 42.89%, 10.18% 97.63%);
+top: 6%;
+transform: rotate(-1deg);
+}
+
+.card-back-red {
+  inset: 1.4cqw;
+  position: absolute;
+  background: var(--primary-red);
+clip-path: polygon(2.16% 25.87%, 98.39% 6.05%, 95.16% 42.89%, 10.18% 92.63%);
+top: 6%;
+transform: rotate(-1deg);
+}
+
+.card-back-red h1 {
+  position: absolute;
+  top: 20%;
+  left: 12%;
+  font-family: var(--tert-title);
+  color: var(--primary-white);
+  font-size: 7.2cqw;
+  line-height: 1;
+  transform: perspective(300px) rotatez(-10deg) rotatey(10deg);
+}
+
+.card-back-red h1 span {
+  color: var(--primary-black);
+}
+
+.voice-player {
+  position: absolute;
+  width: 50%;
+  right: 4%;
+  top: 5%;
+  aspect-ratio: 461 / 171;
+  z-index: 1;
+}
+
+.player-card-back-white {
+  clip-path: polygon(8.2% 18.37%, 97.39% 6.05%, 86.13% 80.89%, 8.2% 40.63%);
+  background-color: var(--primary-white);
+  position: absolute;
+  top: 5%;
+  right: 0;
+  inset: 0;
+}
+
+.player-card-back-black {
+  clip-path: polygon(8.2% 18.37%, 98.39% 12.05%, 89.13% 78.89%, 6.2% 40.63%);
+  background-color: var(--primary-black);
+  position: absolute;
+  top: 5%;
+  right: 2%;
+  inset: 5%;
+}
+
+.player-card-title-red {
+  position: absolute;
+  background-color: var(--primary-red);
+  width: 76%;
+  height: 20%;
+  transform: rotate(10deg);
+  top: 53%;
+  right: 25%;
+  z-index: 2;
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  font-family: var(--subtitle);
+  color: var(--primary-white);
+  font-size: 1.5cqw;
+}
+
+.voice-listing {
+  width: 59cqw;
+  position: relative;
+  margin-left: auto;
+  margin-right: 14%;
+  margin-top: 10%;
+  transform: rotate(2deg);
+}
+
+.listing-white {
+  background-color: var(--primary-white);
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  padding: 7% 7% 8%;
+  display: flex;
+  flex-direction: column;
+}
+
+.listing-head {
+  display: grid;
+  grid-template-columns: 1.4fr 1.4fr 0.6fr;
+  gap: 3%;
+  font-family: var(--tert-title);
+  color: var(--primary-black);
+  font-size: 2.6cqw;
+  line-height: 1;
+  padding: 0 4% 2%;
+  border-bottom: 0.4cqw solid var(--primary-black);
+  transform: rotate(-1deg);
+}
+
+.listing-head .tr-year {
+  color: var(--primary-red);
+}
+
+.listing-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1cqw;
+  margin-top: 15%;
+  scrollbar-width: none;
+}
+
+.listing-rows::-webkit-scrollbar {
+  display: none;
+}
+
+.group-label {
+  font-family: var(--tert-title-full);
+  color: var(--primary-red);
+  font-size: 2.6cqw;
+  line-height: 1;
+  margin: 5% 0 0%;
+  padding-left: 2%;
+  transform: rotate(-1deg);
+}
+
+.group-label:first-child {
+  margin-top: 0;
+}
+
+/* Persona 5 slanted red call-to-action, pinned to the bottom-center */
+.resume-btn {
+  align-self: center;
+  margin-top: 8%;
+  background: var(--primary-red);
+  color: var(--primary-white);
+  font-family: var(--title);
+  font-size: 3cqw;
+  line-height: 1.3;
+  padding: 1.5% 5%;
+  transform: rotate(-2deg);
+  clip-path: polygon(5% 0%, 100% 6%, 95% 100%, 0% 90%);
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: 0.5cqw 0.5cqw 0 var(--primary-black);
+  transition: transform 120ms ease, background 120ms ease, color 120ms ease;
+}
+
+.resume-btn span {
+  display: inline-block;
+  transform: skewX(-6deg);   /* the P5 diagonal lean */
+}
+
+.resume-btn:hover {
+  background: var(--primary-black);
+  color: var(--primary-red);
+  transform: rotate(-2deg) scale(1.05);
+}
+
+.listing-red-border {
+  border: red 1.4cqw solid;
+  /* inset-based so it tracks the white card's height as it grows, instead of
+     a fixed aspect-ratio that would desync the moment a role is added.
+     The negative insets keep the classic P5 offset peek (2026-07-17). */
+  position: absolute;
+  top: -1.5%;
+  left: -3%;
+  right: -6%;
+  bottom: -2%;
+  transform: rotate(3deg);
+  z-index: -1;
+}
+
+/* FILMWORK */
+.film-title {
+  position: absolute;
+  width: 70%;
+  right: 8%;
+  top: 15%;
+  aspect-ratio: 560 / 255;
+  z-index: 1;
+  background-color: var(--primary-black);
+clip-path: polygon(4.46% 37.03%, 98.26% 14.83%, 93.54% 55%, 4.68% 59.9%);
+transform: rotate(-15deg);
+}
+
+.film-class-inner-white {
+  position: absolute;
+  width: 98%;
+  right: 1%;
+  top: 6%;
+  aspect-ratio: 560 / 225;
+  background-color: var(--primary-white);
+  clip-path: polygon(4.46% 37.03%, 98.26% 14.83%, 93.54% 55%, 4.68% 59.9%);
+}
+
+.film-class-inner-red {
+  position: absolute;
+  width: 95%;
+  right: 4%;
+  top: 4%;
+  aspect-ratio: 560 / 225;
+  background-color: var(--primary-red);
+  /* clapperboard hazard stripes, Persona 5 red/black */
+  background-image: repeating-linear-gradient(
+    -58deg,
+    var(--primary-black) 0 4.5%,
+    var(--primary-red) 4.5% 9%
+  );
+    clip-path: polygon(4.46% 37.03%, 100% 14.83%, 95.54% 48%, 4.68% 56.9%);
+}
+
+.film-clapper {
+  position: relative;
+  width: 70%;
+  aspect-ratio: 560 / 400;
+  margin-left: auto;
+  margin-right: 8%;
+  margin-top: 23%;
+  background-color: var(--primary-black);
+clip-path: polygon(8% 10.53%, 100% 9%, 100% 100%, 8.05% 97%);
+  z-index: 2;
+  transform: perspective(800px) rotatez(-2deg) rotatex(5deg) rotatey(-5deg);
+}
+
+.film-clapper-bottom {
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 675 / 450;
+}
+
+.film-clapper-inner-white {
+  position: absolute;
+  width: 90%;
+  aspect-ratio: 675 / 450;
+  right: 1%;
+  top: 12%;
+  background-color: var(--primary-white);
+  clip-path: polygon(1% 1.53%, 100% 6%, 100% 100%, 1.05% 98%);
+}
+
+.film-clapper-inner-red {
+  position: absolute;
+  width: 85%;
+  aspect-ratio: 1920 / 325;
+  background-color: var(--primary-red);
+  top: 16%;
+  right: 4%;
+  z-index: 2;
+  clip-path: polygon(2% 0%, 100% 26%, 100% 100%, 0% 100%);
+  transform: rotate(-1deg);
+}
+
+.film-grid {
+  position: absolute;
+  width: 95%;
+  aspect-ratio: 325 / 150;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 3%;
+  left: 3%;
+  bottom: 3%;
+}
+
+.film-one {
+  grid-column: 1 / 2;
+  background-color: var(--primary-black);
+}
+
+.film-two {
+  grid-column: 2 / 3;
+  background-color: var(--primary-black);
+}
+
+.film-three {
+  grid-column: 1 / 2;
+  background-color: var(--primary-black);
+}
+
+.film-four {
+  grid-column: 2 / 3;
+  background-color: var(--primary-black);
+}
+
+.filmwork-title {
+  position: absolute;
+  left: -0.5%;
+  top: 15%;
+  font-family: var(--tert-title);
+  color: var(--primary-white);
+  font-size: 9.9cqw;
+  line-height: 1;
+  transform: rotate(0.5deg);     /* follows the strip's downward slant */
+  white-space: nowrap;
+}
+
+.filmwork-title span {
+  color: var(--primary-black);
+}
+
+/* the four thumbnail cards, rebuilt in text */
+.film-grid > a {
+  position: relative;
+  padding: 4% 6%;
+  color: var(--primary-white);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 120ms ease;
+}
+
+.film-grid > a:hover {
+  transform: scale(1.04);
+}
+
+.film-card-title {
+  font-family: var(--title), sans-serif;
+  font-size: 2.3cqw;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.film-card-title span {
+  color: var(--primary-gray);
+}
+
+.film-roles {
+  font-family: Impact, 'Arial Narrow', sans-serif;
+  font-size: 1.2cqw;
+  line-height: 1.35;
+  letter-spacing: 0.5px;
+  margin-top: 8%;
+}
+
+/* per-card layouts, matched to the original thumbnails */
+
+.film-one .film-roles {            /* Disaster: roles right under the title */
+  margin-top: 10%;
+}
+
+.film-two .film-card-title {       /* Dreams: title centered up top */
+  text-align: center;
+}
+
+.film-two .film-roles {            /* roles pinned bottom-left */
+  margin-top: 17%;
+}
+
+.film-three .film-roles {          /* See You Next Year: lone credit at the bottom */
+  margin-top: 30%;
+}
+
+.film-four .film-roles {           /* Side Effects: roles mid-card */
+  margin-top: 17%;
+}
+
+/* ABOUT */
+
+.about-title {
+  position: absolute;
+  width: 42%;
+  right: 4%;
+  top: 4%;
+  aspect-ratio: 560 / 225;
+  z-index: 3;
+  transform: rotate(4deg);
+}
+
+.about-title h1 {
+  font-family: var(--tert-title);
+  letter-spacing: 0.8cqw;
+  color: var(--primary-white);
+  font-size: 8cqw;
+  transform: rotate(-10deg) translateX(-1%) translateY(-5%);
+}
+
+.about-title span {
+  color: black;
+}
+.about-portrait {
+  position: absolute;
+  width: 30%;
+  aspect-ratio: 340 / 420;
+  right: 6%;
+  top: 18%;
+  z-index: 2;
+  transform: perspective(900px) rotateY(-6deg) rotateX(4deg) rotateZ(3deg);
+  transform-style: preserve-3d;
+}
+
+.portrait-back-red {
+  position: absolute;
+  inset: 18px;
+  background-color: var(--primary-red);
+  clip-path: polygon(0.8% 2.2%, 98.9% 0.6%, 97.8% 98.4%, 0.2% 97.5%);
+}
+
+.portrait-frame-white {
+  position: absolute;
+  inset: 4%;
+  background-color: var(--primary-white);
+  clip-path: polygon(2.5% 1.8%, 97.1% 3.4%, 95.6% 97.2%, 1.2% 95.7%);
+}
+
+.portrait-slot {
+  position: absolute;
+  inset: 6%;
+  background-color: var(--primary-black);
+  clip-path: polygon(1.98% 3.53%, 96.96% 1.41%, 97.22% 94.75%, 0.96% 98.38%);
+}
+
+.about-bio {
+  width: 48%;
+  aspect-ratio: 620 / 440;
+  position: relative;
+  margin-right: auto;
+  margin-left: 23%;
+  margin-top: 23%;
+  transform: rotate(-2deg);
+  z-index: 2;
+}
+
+.bio-back-white {
+  position: absolute;
+  inset: 0;
+  background-color: var(--primary-white);
+  clip-path: polygon(1.2% 4.6%, 98.4% 1.1%, 96.8% 96.9%, 2.9% 98.6%);
+}
+
+.bio-inner-black {
+  position: absolute;
+  inset: 3.5%;
+  background-color: var(--primary-black);
+  clip-path: polygon(1.98% 3.53%, 97.96% 1.41%, 96.22% 96.75%, 0.96% 97.38%);
+  color: var(--primary-white);
+  font-family: var(--subtitle);
+  font-size: 1.55cqw;
+  padding: 5% 6%;
+  transform: rotate(-1deg);
+}
+
+.bio-inner-black p + p {
+  margin-top: 4%;
+}
+
+.about-contacts {
+  position: absolute;
+  width: 48%;
+  left: 20%;
+  bottom: 5%;
+  display: flex;
+  justify-content: center;
+  gap: 4%;
+  z-index: 2;
+}
+
+/* the slot itself is the white backing; the black+red chip nests inside it */
+.contact-slot {
+  position: relative;
+  width: 15%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--primary-black);
+  clip-path: polygon(8% 5%, 97% 5%, 88% 90%, 10% 90%);
+  pointer-events: auto;
+  transform: rotate(-4deg);
+  transition: transform 120ms ease;
+}
+
+.contact-slot::after {
+  content: "";
+  position: absolute;
+  inset: 16%;
+  background-color: var(--primary-red);
+  border: 0.35cqw solid var(--primary-black);
+}
+
+.contact-ico {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 46%;
+  transform: translate(-50%, -50%);
+  fill: var(--primary-white);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.contact-slot:nth-child(even) {
+  transform: rotate(5deg);
+}
+
+.contact-slot:hover {
+  transform: rotate(0deg) scale(1.12);
+}
+
+/* the film-reel target — black reel, red target rings, P5 energy */
+.about-reel {
+  position: absolute;
+  width: 17%;
+  aspect-ratio: 1 / 1;
+  right: 2%;
+  bottom: 6%;
+  border-radius: 50%;
+  transform: rotate(8deg);
+  z-index: 2;
+  /* the film stock: red target rings, sitting under the plate */
+  background:
+    radial-gradient(circle,
+      var(--primary-red) 0 7%,
+      var(--primary-black) 7% 14%,
+      var(--primary-red) 14% 21%,
+      var(--primary-black) 21% 28%,
+      var(--primary-red) 28% 35%,
+      var(--primary-black) 35% 42%,
+      var(--primary-red) 42% 49%,
+      var(--primary-black) 49% 56%,
+      var(--primary-red) 56% 63%,
+      var(--primary-black) 63% 70%,
+      var(--primary-red) 70% 77%,
+      var(--primary-black) 77% 100%);
+}
+
+.about-reel::after {
+  /* the metal plate with five giant holes punched through it */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--primary-white);
+  mask-image:
+    radial-gradient(circle at 50% 24%,   transparent 0 15%, black 15.5%),
+    radial-gradient(circle at 25.3% 42%, transparent 0 15%, black 15.5%),
+    radial-gradient(circle at 34.7% 71%, transparent 0 15%, black 15.5%),
+    radial-gradient(circle at 65.3% 71%, transparent 0 15%, black 15.5%),
+    radial-gradient(circle at 74.7% 42%, transparent 0 15%, black 15.5%),
+    radial-gradient(circle at 50% 50%,   transparent 0 2.5%, black 3%);
+  mask-composite: intersect;
+  -webkit-mask-image:
+    radial-gradient(circle at 50% 24%,   transparent 0 15%, black 15.5%),
+    radial-gradient(circle at 25.3% 42%, transparent 0 15%, black 15.5%),
+    radial-gradient(circle at 34.7% 71%, transparent 0 15%, black 15.5%),
+    radial-gradient(circle at 65.3% 71%, transparent 0 15%, black 15.5%),
+    radial-gradient(circle at 74.7% 42%, transparent 0 15%, black 15.5%),
+    radial-gradient(circle at 50% 50%,   transparent 0 2.5%, black 3%);
+  -webkit-mask-composite: source-in;
+}
