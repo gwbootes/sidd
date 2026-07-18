@@ -9,11 +9,15 @@ const groups = [
         { character: "Studio Space Sample", project: "Booth Sample",        year: "2026", src: STUDIO },
     ]},
     { label: "Roles", tracks: [
-        { character: "Butler Everly", project: "Once Upon An Earl",           year: "2022", src: DEMO },
-        { character: "Dameon",        project: "Twice Reborn",                year: "2022", src: DEMO },
-        { character: "Memo",          project: "Road X: Magnetized | Ep. 9",  year: "2022", src: DEMO },
-        { character: "Tsuru",         project: "Tales of a Paper Goddess",    year: "2021", src: DEMO },
-        { character: "Friend #2",     project: "This Was For You",            year: "2019", src: DEMO },
+        // Add a `url:` to any track that lives out on the net (a game page, itch,
+        // Steam, YouTube, wherever). A row WITH a url plays the sample AND opens
+        // that page in a new tab on click. A row without one just plays. Example:
+        //   { character: "Memo", project: "Road X", year: "2022", src: DEMO, url: "https://the-games-page.com" },
+        { character: "Butler Everly", project: "Once Upon An Earl",           year: "2022", src: DEMO, url: "https://oishii.itch.io/once-upon-an-earl" },
+        { character: "Dameon",        project: "Twice Reborn",                year: "2022", src: DEMO, url: "https://firststepcinematics.itch.io/twice-reborn" },
+        { character: "Memo",          project: "Road X: Magnetized | Ep. 9",  year: "2022", src: DEMO, url: "https://roadxpodcast.buzzsprout.com/2016089/episodes/11581837-road-x-9-magnetized" },
+        { character: "Tsuru",         project: "Tales of a Paper Goddess",    year: "2021", src: DEMO, url: "https://filmfreeway.com/TalesofaPaperHairGoddess" },
+        { character: "Friend #2",     project: "This Was For You",            year: "2019", src: DEMO, url: "https://store.steampowered.com/app/1067930/this_was_for_you/" },
     ]},
 ];
 
@@ -43,12 +47,19 @@ groups.forEach((g) => {
     g.tracks.forEach((t) => {
         const i = flatIndex++;
         const row = document.createElement("div");
-        row.className = "track-row";
+        row.className = "track-row" + (t.url ? " has-link" : "");
+        // linked rows get a small ↗ after the project name as a "this opens out" cue
+        const linkMark = t.url ? ' <span class="tr-ext">↗</span>' : '';
         row.innerHTML =
             '<span class="tr-char">' + t.character + '</span>' +
-            '<span class="tr-proj">' + t.project + '</span>' +
+            '<span class="tr-proj">' + t.project + linkMark + '</span>' +
             '<span class="tr-year">' + t.year + '</span>';
-        row.addEventListener("click", () => playTrack(i));
+        row.addEventListener("click", () => {
+            playTrack(i);
+            // dual-action: a real click also opens the game page in a new tab.
+            // Kept HERE (not in playTrack) so auto-advance never spawns tabs.
+            if (t.url) window.open(t.url, "_blank", "noopener");
+        });
         listing.appendChild(row);
     });
 });

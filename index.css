@@ -483,6 +483,18 @@ display: flex;
 .track-row.selected .tr-year {
   color: var(--primary-black);
 }
+
+/* linked-row marker: a small arrow saying "this one opens the game page too" */
+.tr-ext {
+  color: var(--primary-red);
+  font-size: 0.85em;
+  font-weight: 700;
+}
+
+.track-row:hover .tr-ext,
+.track-row.selected .tr-ext {
+  color: var(--primary-white);
+}
 /* AUDIO CODE */
 
 .voice-title {
